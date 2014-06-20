@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css' type="text/css" rel="stylesheet">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <%= form_tag(signin_path,method:'post',multipart:true,class:'form-signin') do %>
+            <% if flash.any? %>
+              <% flash.each do |key,value| %>
+                  <%= value %>
+              <% end %>
+            <% end %>
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <%= email_field_tag 'email',nil,id:'txtUsername',class:'input-block-level',autocomplete:'off',placeholder:'Your email'%>
+            <%= password_field_tag 'password',nil,id:'txtPassword',class:'input-block-level',placeholder:'Your password'%>
+            <label class="checkbox">
+              <%= check_box_tag 'remember' %>
+              <%= label_tag '','Keep me logged in',for:'remember' %>
+            </label>
+            <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <% end %>
+    </div>
+</body>
+
+</html>
