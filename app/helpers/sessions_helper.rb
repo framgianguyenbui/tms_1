@@ -34,11 +34,11 @@ module SessionsHelper
   end
 
   def signed_in_user
-    redirect_to signin_path, notice: 'Please sign in' unless signed_in?
+    redirect_to signin_path, notice: "Please sign in" unless signed_in?
   end
 
   def signed_in_admin
-    redirect_to root_path, notice: 'You do not have permission' unless current_user.admin?
+    redirect_to root_path, notice: "You do not have permission" unless current_user.admin?
   end
 
   def redirect_back
