@@ -1,0 +1,21 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h1>
+    <%= @subject.name %>
+  </h1>
+  <div class="col-md-6">
+    <p>
+      <%= @subject.content %>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <h4>Tasks: </h4>
+    <ol>
+    <% @subject.tasks.each do |task| %>
+        <li><%= task.name %></li>
+    <% end %>
+    </ol>
+  </div>
+  <%= link_to "Edit", edit_admin_subject_path(@subject) %> |
+  <%= link_to "Back", admin_subjects_path %>
+</div>

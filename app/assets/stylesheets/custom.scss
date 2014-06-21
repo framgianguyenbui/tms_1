@@ -28,3 +28,15 @@ form[class="^new"],form[class="^edit"]{
   padding:0;
   text-align: left;
 }
+
+.input-block-level {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom:10px;
+  min-height: 30px;
+  width: 100%;
+}
+
+.field{margin-bottom:10px;}

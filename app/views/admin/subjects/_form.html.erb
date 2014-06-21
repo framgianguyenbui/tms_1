@@ -1,0 +1,49 @@
+<%= form_for [:admin, @subject] do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class:"input-block-level" %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content, class:"input-block-level", rows: 10 %>
+    </div>
+    <h3>Task: </h3>
+    <div id="FormTask">
+        <%= link_to "Add new task", "#", class: "TaskAdd" %>
+        <%= f.fields_for :tasks do |task_builder| %>
+            <div class="field">
+                <%= task_builder.text_field :name %>
+                <%= task_builder.hidden_field :_destroy %>
+                <%= link_to "Remove", "#", class: "TaskRemove" %>
+            </div>
+        <% end %>
+    </div>
+    <div class="actions">
+      <br>
+    <%= f.submit %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $("#FormTask .TaskAdd").on("click", function(){
+        event.preventDefault();
+        var i = $("#FormTask").children(".field").length;
+        var field = $("<div />").addClass("field");
+        field.append($("<input type='text' />").attr("name","subject[tasks_attributes]["+i+"][name]"))
+             .append($("<input type='hidden' />").attr("name","subject[tasks_attributes]["+i+"][_destroy]"))
+             .append($("<a />").html("Remove").addClass("TaskRemove").attr("href","#")
+                               .bind("click",function(){
+                                    event.preventDefault();
+                                    $(this).prev().val(1).prev().attr("disabled","disabled")
+                                }));
+        $("#FormTask").append(field);
+    });
+    $("#FormTask .TaskRemove").on("click",function(){
+        event.preventDefault();
+        if ($(this).hasClass("undo"))
+            $(this).html("Remove").removeClass("undo").prev().val(0).prev().removeAttr("disabled")
+        else
+            $(this).html("Undo").addClass("undo").prev().val(1).prev().attr("disabled","disabled")
+    })
+</script>
