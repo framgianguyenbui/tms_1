@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620084714) do
+ActiveRecord::Schema.define(version: 20140620090305) do
+
+  create_table "admin_subjects", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "course_subject_tasks", force: true do |t|
     t.integer  "course_subject_id"
